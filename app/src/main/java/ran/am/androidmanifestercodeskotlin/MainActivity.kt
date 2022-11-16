@@ -1,10 +1,12 @@
 package ran.am.androidmanifestercodeskotlin
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
 import android.widget.ListView
-import java.util.ArrayList
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -50,12 +52,78 @@ class MainActivity : AppCompatActivity() {
 
         val arrayAdapter: ArrayAdapter<*>
 
-
-        // access the listView from xml file
         var mListView = findViewById<ListView>(R.id.idlistv)
         arrayAdapter = ArrayAdapter(this,
             android.R.layout.simple_list_item_1, arrayList!!
         )
         mListView.adapter = arrayAdapter
+
+        mListView.setOnItemClickListener(OnItemClickListener { parent, view, position, id ->
+
+            when (position) {
+                0 -> startActivity(
+                    Intent(
+                        this@MainActivity,
+                        SimpleButtonClickEventListener::class.java
+                    )
+                )
+                1 -> startActivity(Intent(this@MainActivity, GettingDatafromEditText::class.java))
+                2 -> startActivity(Intent(this@MainActivity, PassingDataBwActivity::class.java))
+                3 -> startActivity(Intent(this@MainActivity, ListViewExample::class.java))
+                4 -> startActivity(Intent(this@MainActivity, WidgetsRadioCheck::class.java))
+                5 -> startActivity(Intent(this@MainActivity, DataTimePicker::class.java))
+                6 -> startActivity(Intent(this@MainActivity, AudioVideoExample::class.java))
+                7 -> startActivity(Intent(this@MainActivity, StartActivityForResultExample::class.java))
+                8 -> startActivity(Intent(this@MainActivity, SimpleAlertDialog::class.java))
+                9 -> startActivity(Intent(this@MainActivity, WebviewExample::class.java))
+                10 -> startActivity(Intent(this@MainActivity, WifiBluetooth::class.java))
+                11 -> startActivity(Intent(this@MainActivity, MapsExpl::class.java))
+                12 -> startActivity(Intent(this@MainActivity, SharedPreferenceExample::class.java))
+                13 -> startActivity(Intent(this@MainActivity, NotificationExample::class.java))
+                14 -> startActivity(Intent(this@MainActivity, InternalExternalStorage::class.java))
+                15 -> startActivity(Intent(this@MainActivity, ActivityLifeCycleExample::class.java))
+                16 -> startActivity(Intent(this@MainActivity, AnimationInAndroid::class.java))
+                17 -> startActivity(Intent(this@MainActivity, SendingSmsMail::class.java))
+                18 -> startActivity(Intent(this@MainActivity, SensorsInAndroid::class.java))
+                19 -> startActivity(Intent(this@MainActivity, AndroidServiceExample::class.java))
+                20 -> startActivity(Intent(this@MainActivity, FragmentsExample::class.java))
+                21 -> startActivity(Intent(this@MainActivity, NavigationActivity::class.java))
+                22 -> startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+                23 -> startActivity(Intent(this@MainActivity, WebBased::class.java))
+                24 -> startActivity(Intent(this@MainActivity, ReCycleViewExpl::class.java))
+                25 -> startActivity(Intent(this@MainActivity, SimpleRetrofitExpl::class.java))
+                26 -> {
+                    startActivity(Intent(this@MainActivity, GmapLiveTracking::class.java))
+                    Toast.makeText(
+                        this@MainActivity,
+                        "it will keep updating when your location changes",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                27 -> startActivity(Intent(this@MainActivity, WorkMngrExpl::class.java))
+               // 28 -> startActivity(
+                  //  Intent(
+                     //   this@MainActivity,
+                    //    kp.ranjith.notesroom.MainActivity::class.java
+                   // )
+              //  )
+              //  29 ->// startActivity(Intent(this@MainActivity, MainActivity2::class.java))
+               /// 30 -> {
+                 //   startActivity(
+                     //   Intent(
+                      //      this@MainActivity,
+                      //      kp.ranjith.s3_v2_viewmodeldemo.MainActivity::class.java
+                     //   )
+                  //  )
+//                    Toast.makeText(
+//                        this@MainActivity,
+//                        "even if rotate the device , data is not lost",
+//                        Toast.LENGTH_LONG
+//                    ).show()
+                }
+           // }
+        })
+
+
     }
 }
