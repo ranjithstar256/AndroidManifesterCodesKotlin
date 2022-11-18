@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity_old_java extends AppCompatActivity {
     //This is example
     ListView lv;
     ArrayList<String> arrayList;
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         arrayList.add("Livedata Example");//29
         arrayList.add("MVVM Example");//30
 
-        arrayAdapter = new ArrayAdapter<String>(MainActivity.this, 
+        arrayAdapter = new ArrayAdapter<String>(MainActivity_old_java.this,
                 android.R.layout.simple_list_item_1, arrayList);
 
         lv.setAdapter(arrayAdapter);
@@ -66,94 +66,94 @@ public class MainActivity extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, "You have selected " + arrayList.get(position), 
+                Toast.makeText(MainActivity_old_java.this, "You have selected " + arrayList.get(position),
                         Toast.LENGTH_SHORT).show();
                 
                 switch (position) {
                     case 0:
-                        startActivity(new Intent(MainActivity.this, SimpleButtonClickEventListener.class));
+                        startActivity(new Intent(MainActivity_old_java.this, SimpleButtonClickEventListener.class));
                         break;
                     case 1:
-                        startActivity(new Intent(MainActivity.this, GettingDatafromEditText.class));
+                        startActivity(new Intent(MainActivity_old_java.this, GettingDatafromEditText.class));
                         break;
                     case 2:
-                        startActivity(new Intent(MainActivity.this, PassingDataBwActivity.class));
+                        startActivity(new Intent(MainActivity_old_java.this, PassingDataBwActivity.class));
                         break;
                     case 3:
-                        startActivity(new Intent(MainActivity.this, ListViewExample.class));
+                        startActivity(new Intent(MainActivity_old_java.this, ListViewExample.class));
                         break;
                     case 4:
-                        startActivity(new Intent(MainActivity.this, WidgetsRadioCheck.class));
+                        startActivity(new Intent(MainActivity_old_java.this, WidgetsRadioCheck.class));
                         break;
                     case 5:
-                        startActivity(new Intent(MainActivity.this, DataTimePicker.class));
+                        startActivity(new Intent(MainActivity_old_java.this, DataTimePicker.class));
                         break;
                     case 6:
-                        startActivity(new Intent(MainActivity.this, AudioVideoExample.class));
+                        startActivity(new Intent(MainActivity_old_java.this, AudioVideoExample.class));
                         break;
                     case 7:
-                        startActivity(new Intent(MainActivity.this, StartActivityForResultExample.class));
+                        startActivity(new Intent(MainActivity_old_java.this, StartActivityForResultExample.class));
                         break;
                     case 8:
-                        startActivity(new Intent(MainActivity.this, SimpleAlertDialog.class));
+                        startActivity(new Intent(MainActivity_old_java.this, SimpleAlertDialog.class));
                         break;
                     case 9:
-                        startActivity(new Intent(MainActivity.this, WebviewExample.class));
+                        startActivity(new Intent(MainActivity_old_java.this, WebviewExample.class));
                         break;
                     case 10:
-                        startActivity(new Intent(MainActivity.this, WifiBluetooth.class));
+                        startActivity(new Intent(MainActivity_old_java.this, WifiBluetooth.class));
                         break;
                     case 11:
-                        startActivity(new Intent(MainActivity.this, MapsExpl.class));
+                        startActivity(new Intent(MainActivity_old_java.this, MapsExpl.class));
                         break;
                     case 12:
-                        startActivity(new Intent(MainActivity.this, SharedPreferenceExample.class));
+                        startActivity(new Intent(MainActivity_old_java.this, SharedPreferenceExample.class));
                         break;
                     case 13:
-                        startActivity(new Intent(MainActivity.this, NotificationExample.class));
+                        startActivity(new Intent(MainActivity_old_java.this, NotificationExample.class));
                         break;
                     case 14:
-                        startActivity(new Intent(MainActivity.this, InternalExternalStorage.class));
+                        startActivity(new Intent(MainActivity_old_java.this, InternalExternalStorage.class));
                         break;
                     case 15:
-                        startActivity(new Intent(MainActivity.this, ActivityLifeCycleExample.class));
+                        startActivity(new Intent(MainActivity_old_java.this, ActivityLifeCycleExample.class));
                         break;
                     case 16:
-                        startActivity(new Intent(MainActivity.this, AnimationInAndroid.class));
+                        startActivity(new Intent(MainActivity_old_java.this, AnimationInAndroid.class));
                         break;
                     case 17:
-                        startActivity(new Intent(MainActivity.this, SendingSmsMail.class));
+                        startActivity(new Intent(MainActivity_old_java.this, SendingSmsMail.class));
                         break;
                     case 18:
-                        startActivity(new Intent(MainActivity.this, SensorsInAndroid.class));
+                        startActivity(new Intent(MainActivity_old_java.this, SensorsInAndroid.class));
                         break;
                     case 19:
-                        startActivity(new Intent(MainActivity.this, AndroidServiceExample.class));
+                        startActivity(new Intent(MainActivity_old_java.this, AndroidServiceExample.class));
                         break;
                     case 20:
-                        startActivity(new Intent(MainActivity.this, FragmentsExample.class));
+                        startActivity(new Intent(MainActivity_old_java.this, FragmentsExample.class));
                         break;
                     case 21:
-                        startActivity(new Intent(MainActivity.this, NavigationActivity.class));
+                        startActivity(new Intent(MainActivity_old_java.this, NavigationActivity.class));
                         break;
                     case 22:
-                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                        startActivity(new Intent(MainActivity_old_java.this, LoginActivity.class));
                         break;
                     case 23:
-                        startActivity(new Intent(MainActivity.this, WebBased.class));
+                        startActivity(new Intent(MainActivity_old_java.this, WebBased.class));
                         break;
                     case 24:
-                        startActivity(new Intent(MainActivity.this, ReCycleViewExpl.class));
+                        startActivity(new Intent(MainActivity_old_java.this, ReCycleViewExpl.class));
                         break;
                     case 25:
-                        startActivity(new Intent(MainActivity.this, SimpleRetrofitExpl.class));
+                        startActivity(new Intent(MainActivity_old_java.this, SimpleRetrofitExpl.class));
                         break;
                     case 26:
-                        startActivity(new Intent(MainActivity.this, GmapLiveTracking.class));
-                        Toast.makeText(MainActivity.this, "it will keep updating when your location changes", Toast.LENGTH_LONG).show();
+                       // startActivity(new Intent(MainActivity_old_java.this, GmapLiveTracking.class));
+                        Toast.makeText(MainActivity_old_java.this, "it will keep updating when your location changes", Toast.LENGTH_LONG).show();
                         break;
                     case 27:
-                        startActivity(new Intent(MainActivity.this, WorkMngrExpl.class));
+                        startActivity(new Intent(MainActivity_old_java.this, WorkMngrExpl.class));
                         break;
 
                     case 28:

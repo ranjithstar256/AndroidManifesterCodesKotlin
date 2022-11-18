@@ -7,14 +7,14 @@ class RetrofitClient private constructor() {
     val myApi: Api
 
     init {
-        val retrofit: Retrofit = Builder().baseUrl(Api.Companion.BASE_URL)
+        val retrofit: Retrofit = Retrofit.Builder().baseUrl(Api.Companion.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         myApi = retrofit.create(Api::class.java)
     }
 
     companion object {
-        fun getInstance(): Any {
+        fun getInstance() {
 
         }
 

@@ -5,6 +5,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class DestinationActivity : AppCompatActivity() {
+//
 //    var t1: TextView? = null
 //    var t2: TextView? = null
 

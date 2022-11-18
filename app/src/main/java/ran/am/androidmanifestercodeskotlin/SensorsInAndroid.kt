@@ -19,7 +19,7 @@ class SensorsInAndroid : AppCompatActivity() {
         sm = getSystemService(SENSOR_SERVICE) as SensorManager
         textView1 = findViewById(R.id.textView1)
         list = sm!!.getSensorList(Sensor.TYPE_ACCELEROMETER)
-        if ((list as MutableList<Sensor>?)?.size ?:  > 0) {
+        if ((list as MutableList<Sensor>?)?.size!! > 0) {
             sm!!.registerListener(sel, (list as MutableList<Sensor>?)?.get(0) as Sensor, SensorManager.SENSOR_DELAY_NORMAL)
         } else {
             Toast.makeText(baseContext, "Error: No Accelerometer.", Toast.LENGTH_LONG).show()

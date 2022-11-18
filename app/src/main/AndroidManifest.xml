@@ -2,7 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,28 +24,53 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidManifesterCodesKotlin"
         tools:targetApi="31">
+
+        <!--
+             TODO: Before you run your application, you need a Google Maps API key.
+
+             To get one, follow the directions here:
+
+                https://developers.google.com/maps/documentation/android-sdk/get-api-key
+
+             Once you have your API key (it starts with "AIza"), define a new property in your
+             project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
+             "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDRP3PHTNL1LFiap6sSUquyvzCYhqPVGo0" />
+
+        <activity
+            android:name=".MyMapsActivity"
+            android:exported="true"
+            android:label="@string/title_activity_my_maps" >
+        </activity>
+        <activity
+            android:name="s3_v2_viewmodeldemo.MainActivity"
+            ></activity>
+        <activity
+            android:name="s3_v2_viewmodeldemo.MainActivity2"
+        ></activity>
+        <activity android:name="notesroom.MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".SignInWithGoogle"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-
-
         </activity>
         <activity
             android:name=".WorkMngrExpl"
@@ -43,7 +79,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".GmapLiveTracking" />
+       <!-- <activity android:name=".GmapLiveTracking" />-->
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -52,17 +88,13 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
-
-
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity
-            android:name=".MapsExpl"  />
+        <activity android:name=".MapsExpl" />
         <activity android:name=".SimpleRetrofitExpl" />
         <activity android:name=".ReCycleViewExpl" />
-
         <activity android:name=".SimpleButtonClickEventListener" />
         <activity android:name=".GettingDatafromEditText" />
         <activity android:name=".PassingDataBwActivity" />
@@ -83,8 +115,6 @@
         <activity android:name=".BroadcastReceiverExample" />
         <activity android:name=".AndroidServiceExample" />
         <activity android:name=".FragmentsExample" />
-
-
         <activity android:name=".SharedPreferenceExample" />
         <activity android:name=".InternalExternalStorage" />
         <activity android:name=".WebBased" />
@@ -105,10 +135,8 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity
-            android:name=".NavigationActivity"></activity>
+        <activity android:name=".NavigationActivity" />
         <activity android:name=".LoginActivity" />
-
     </application>
 
 </manifest>

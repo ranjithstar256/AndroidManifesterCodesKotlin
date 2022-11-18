@@ -93,10 +93,10 @@ class SignInWithGoogle : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             REQ_ONE_TAP -> try {
-                val credential: SignInCredential =  oneTapClient?.getSignInCredentialFromIntent(data) ?:
-                val idToken: String? = credential.getGoogleIdToken()
-                val username: String = credential.getId()
-                val password: String? = credential.getPassword()
+                val credential: SignInCredential? =  oneTapClient?.getSignInCredentialFromIntent(data)
+                val idToken: String? = credential?.getGoogleIdToken()
+                val username: String? = credential?.getId()
+                val password: String? = credential?.getPassword()
                 if (idToken != null) {
                     // Got an ID token from Google. Use it to authenticate
                     // with your backend.

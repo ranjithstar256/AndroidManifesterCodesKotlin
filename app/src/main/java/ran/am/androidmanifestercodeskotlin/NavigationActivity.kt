@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 
@@ -17,7 +17,7 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation)
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
+///        setSupportActionBar(toolbar)
         val fab = findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -61,7 +61,7 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         val id = item.itemId
-        val fragmentTransaction = fragmentManager.beginTransaction()
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
         if (id == R.id.nav_camera) {
             // Handle the camera action
             fragmentTransaction.replace(R.id.conten, FirstFragment()).commit()

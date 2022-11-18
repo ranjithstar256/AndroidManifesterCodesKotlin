@@ -127,7 +127,6 @@ class InternalExternalStorage : AppCompatActivity() {
                 while (myReader.readLine().also { aDataRow = it } != null) {
                     aBuffer += """
                         $aDataRow
-                        
                         """.trimIndent()
                 }
                 myReader.close()

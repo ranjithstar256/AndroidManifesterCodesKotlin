@@ -1,6 +1,7 @@
 package ran.am.androidmanifestercodeskotlin
-
-import android.Manifest
+/*
+import android.Manifest.permission.ACCESS_COARSE_LOCATION
+import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.app.Activity
 import android.content.DialogInterface
 import android.content.Intent
@@ -11,11 +12,11 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import com.google.android.gms.common.api.ResolvableApiException
-import com.google.android.gms.*
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -26,8 +27,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
-import com.google.android.gms.tasks.Task
-import java.lang.Exception
+
 
 class GmapLiveTracking : FragmentActivity(), OnMapReadyCallback {
     private var mMap: GoogleMap? = null
@@ -35,17 +35,68 @@ class GmapLiveTracking : FragmentActivity(), OnMapReadyCallback {
     private var mLocationRequest: LocationRequest? = null
     private var mlocationCallback: LocationCallback? = null
     private var builder: LocationSettingsRequest.Builder? = null
+    val REQUEST_CHECK_SETTINGS = 2
+
+
+
+
+
     protected override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps_expl)
-        ///   ActivityCompat.requestPermissions(GmapLiveTracking.this,                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},  1);
+
+        //ActivityCompat.requestPermissions(GmapLiveTracking.this,     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},  1);
+
+        // Register the permissions callback, which handles the user's response to the
+// system permissions dialog. Save the return value, an instance of
+// ActivityResultLauncher. You can use either a val, as shown in this snippet,
+// or a lateinit var in your onAttach() or onCreate() method.
+        val requestPermissionLauncher =
+            registerForActivityResult(
+                ActivityResultContracts.RequestPermission()
+            ) { isGranted: Boolean ->
+                if (isGranted) {
+                    // Permission is granted. Continue the action or workflow in your
+                    // app.
+                } else {
+                    // Explain to the user that the feature is unavailable because the
+                    // feature requires a permission that the user has denied. At the
+                    // same time, respect the user's decision. Don't link to system
+                    // settings in an effort to convince the user to change their
+                    // decision.
+                }
+            }
+        when {
+            ContextCompat.checkSelfPermission(
+                CONTEXT,
+                Manifest.permission.
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                // You can use the API that requires the permission.
+            }
+            shouldShowRequestPermissionRationale(...) -> {
+            // In an educational UI, explain to the user why your app requires this
+            // permission for a specific feature to behave as expected, and what
+            // features are disabled if it's declined. In this UI, include a
+            // "cancel" or "no thanks" button that lets the user continue
+            // using your app without granting the permission.
+            showInContextUI(...)
+        }
+            else -> {
+                // You can directly ask for the permission.
+                // The registered ActivityResultCallback gets the result of this request.
+                requestPermissionLauncher.launch(
+                    Manifest.permission.REQUESTED_PERMISSION)
+            }
+        }
+
+
         val mapFragment: SupportMapFragment =
             getSupportFragmentManager().findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         fetchLastLocation()
         mlocationCallback = object : LocationCallback() {
-            fun onLocationResult(locationResult: LocationResult?) {
+            override fun onLocationResult(locationResult: LocationResult) {
                 if (locationResult == null) {
                     return
                 }
@@ -69,7 +120,7 @@ class GmapLiveTracking : FragmentActivity(), OnMapReadyCallback {
             }
         }
         mLocationRequest = createLocationRequest()
-        builder = Builder()
+        builder = LocationRequest.Builder()
             .addLocationRequest(mLocationRequest)
         checkLocationSetting(builder)
     }
@@ -202,7 +253,7 @@ class GmapLiveTracking : FragmentActivity(), OnMapReadyCallback {
                 return
             }
         })
-        task.addOnFailureListener(this, object : OnFailureListener() {
+        task.addOnFailureListener(this, object : OnFailureListener {
             override fun onFailure(e: Exception) {
                 if (e is ResolvableApiException) {
                     // Location settings are not satisfied, but this can be fixed
@@ -238,7 +289,7 @@ class GmapLiveTracking : FragmentActivity(), OnMapReadyCallback {
         })
     }
 
-    protected override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CHECK_SETTINGS) {
             if (resultCode == Activity.RESULT_OK) {
@@ -269,21 +320,15 @@ class GmapLiveTracking : FragmentActivity(), OnMapReadyCallback {
         }
         mLocationRequest?.let {
             mlocationCallback?.let { it1 ->
-                fusedLocationClient?.requestLocationUpdates(
-                    it,
-                    it1,
-                    null /* Looper */
-                ) ?: 
+                fusedLocationClient.requestLocationUpdates(it,    it1,      null ) {
+
+                }
             }
         }
     }
 
-    companion object {
-        private const val REQUEST_CHECK_SETTINGS = 102
-    }
-
-     @JvmName("onMapReady1")
-     override fun onMapReady(p0: GoogleMap) {
+    override fun onMapReady(p0: GoogleMap) {
         TODO("Not yet implemented")
     }
 }
+*/

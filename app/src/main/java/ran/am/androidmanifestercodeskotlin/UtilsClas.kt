@@ -23,7 +23,7 @@ object UtilsClas {
             )
             channel1.enableVibration(true)
             channel1.enableLights(true)
-            channel1.lightColor = com.google.android.libraries.maps.R.color.light_grey
+            channel1.lightColor = R.color.purple_200
             channel1.lockscreenVisibility = Notification.VISIBILITY_PRIVATE
             notificationManager!!.createNotificationChannel(channel1)
         }

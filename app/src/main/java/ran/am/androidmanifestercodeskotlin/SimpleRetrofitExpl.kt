@@ -30,34 +30,36 @@ class SimpleRetrofitExpl : AppCompatActivity() {
 
         //displaying the string array into listview
         private get() {
-            val call: Call<List<Hero>> =
-                RetrofitClient.Companion.getInstance().getMyApi().getHeroes()
-            call.enqueue(object : Callback<List<Hero?>?> {
-                override fun onResponse(call: Call<List<Hero?>?>?, response: Response<List<Hero?>?>) {
-                    val heroList: List<Hero> = response.body() as List<Hero>
+            val call: Call<List<Hero?>?>? = RetrofitClient.instance?.myApi?.heroes
 
-                    // Log.i(TAG, "onResponse: "+response.body().toString());
+            if (call != null) {
+                call.enqueue(object : Callback<List<Hero?>?> {
+                    override fun onResponse(call: Call<List<Hero?>?>?, response: Response<List<Hero?>?>) {
+                        val heroList: List<Hero> = response.body() as List<Hero>
 
-                    //Creating an String array for the ListView
-                    val heroes = arrayOfNulls<String>(heroList.size)
+                        // Log.i(TAG, "onResponse: "+response.body().toString());
 
-                    //looping through all the heroes and inserting the names inside the string array
-                    for (i in heroList.indices) {
-                        heroes[i] = heroList[i].name
+                        //Creating an String array for the ListView
+                        val heroes = arrayOfNulls<String>(heroList.size)
+
+                        //looping through all the heroes and inserting the names inside the string array
+                        for (i in heroList.indices) {
+                            heroes[i] = heroList[i].name
+                        }
+
+                        //displaying the string array into listview
+                        listView!!.adapter = ArrayAdapter<String>(
+                            getApplicationContext(),
+                            android.R.layout.simple_list_item_1,
+                            heroes
+                        )
                     }
 
-                    //displaying the string array into listview
-                    listView!!.adapter = ArrayAdapter<String>(
-                        getApplicationContext(),
-                        android.R.layout.simple_list_item_1,
-                        heroes
-                    )
-                }
-
-                override fun onFailure(call: Call<List<Hero?>?>?, t: Throwable) {
-                    Toast.makeText(getApplicationContext(), t.message, Toast.LENGTH_SHORT).show()
-                }
-            })
+                    override fun onFailure(call: Call<List<Hero?>?>?, t: Throwable) {
+                        Toast.makeText(getApplicationContext(), t.message, Toast.LENGTH_SHORT).show()
+                    }
+                })
+            }
         }
 }
 

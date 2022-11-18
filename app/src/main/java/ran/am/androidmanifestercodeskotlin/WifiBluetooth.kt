@@ -38,7 +38,7 @@ import ran.am.androidmanifestercodeskotlin.SecondFragment
 import ran.am.androidmanifestercodeskotlin.ThirdFragment
 import android.os.Build
 import android.content.DialogInterface
-import ran.am.androidmanifestercodeskotlin.GmapLiveTracking
+
 import android.content.IntentSender.SendIntentException
 import android.app.Activity
 import android.text.TextWatcher

@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import s3_v2_viewmodeldemo.MainActivity2
 
 class MainActivity : AppCompatActivity() {
 
@@ -93,35 +94,34 @@ class MainActivity : AppCompatActivity() {
                 24 -> startActivity(Intent(this@MainActivity, ReCycleViewExpl::class.java))
                 25 -> startActivity(Intent(this@MainActivity, SimpleRetrofitExpl::class.java))
                 26 -> {
-                    startActivity(Intent(this@MainActivity, GmapLiveTracking::class.java))
-                    Toast.makeText(
-                        this@MainActivity,
-                        "it will keep updating when your location changes",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-                27 -> startActivity(Intent(this@MainActivity, WorkMngrExpl::class.java))
-               // 28 -> startActivity(
-                  //  Intent(
-                     //   this@MainActivity,
-                    //    kp.ranjith.notesroom.MainActivity::class.java
-                   // )
-              //  )
-              //  29 ->// startActivity(Intent(this@MainActivity, MainActivity2::class.java))
-               /// 30 -> {
-                 //   startActivity(
-                     //   Intent(
-                      //      this@MainActivity,
-                      //      kp.ranjith.s3_v2_viewmodeldemo.MainActivity::class.java
-                     //   )
-                  //  )
+                   // startActivity(Intent(this@MainActivity, GmapLiveTracking::class.java))
 //                    Toast.makeText(
 //                        this@MainActivity,
-//                        "even if rotate the device , data is not lost",
+//                        "it will keep updating when your location changes",
 //                        Toast.LENGTH_LONG
 //                    ).show()
                 }
-           // }
+                27 -> startActivity(Intent(this@MainActivity, WorkMngrExpl::class.java))
+                28 -> startActivity(
+                    Intent(
+                        this@MainActivity,notesroom.MainActivity::class.java
+                    )
+                )
+                29 -> startActivity(Intent(this@MainActivity, MainActivity2::class.java))
+                30 -> {
+                    startActivity(
+                        Intent(
+                            this@MainActivity,
+                           s3_v2_viewmodeldemo.MainActivity::class.java
+                        )
+                    )
+                    Toast.makeText(
+                        this@MainActivity,
+                        "even if rotate the device , data is not lost",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
         })
 
 

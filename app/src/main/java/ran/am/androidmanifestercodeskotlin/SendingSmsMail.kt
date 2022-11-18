@@ -5,8 +5,9 @@ import android.app.Activity
 import android.app.PendingIntent
 import android.content.Intent
 import android.content.IntentSender
+import android.content.IntentSender.SendIntentException
 import android.content.pm.PackageManager
- import android.os.Bundle
+import android.os.Bundle
 import android.telephony.SmsManager
 import android.util.Log
 import android.view.View
@@ -16,9 +17,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.credentials.Credential
-import com.google.android.gms.auth.api.credentials.Credential.EXTRA_KEY
+import com.google.android.gms.auth.api.credentials.CredentialPickerConfig
 import com.google.android.gms.auth.api.credentials.HintRequest
+import com.google.android.gms.auth.api.credentials.IdentityProviders
 import com.google.android.gms.common.api.GoogleApiClient
+
 
 class SendingSmsMail : AppCompatActivity(), GoogleApiClient.ConnectionCallbacks {
     var editText1: EditText? = null
@@ -95,23 +98,39 @@ class SendingSmsMail : AppCompatActivity(), GoogleApiClient.ConnectionCallbacks 
     override fun onConnected(bundle: Bundle?) {}
     override fun onConnectionSuspended(i: Int) {}
     private fun gclint() {
-        val mGoogleApiClient: GoogleApiClient = Builder(this)
+        val mGoogleApiClient: GoogleApiClient = GoogleApiClient.Builder(this)
             .addConnectionCallbacks(this) //.addOnConnectionFailedListener((GoogleApiClient.OnConnectionFailedListener) this)
             .addApi(Auth.CREDENTIALS_API)
             .build()
         if (mGoogleApiClient != null) {
             mGoogleApiClient.connect()
         }
-        val hintRequest: HintRequest = Builder()
-            .setPhoneNumberIdentifierSupported(true)
+        val hintRequest = HintRequest.Builder()
+            .setHintPickerConfig(
+                CredentialPickerConfig.Builder()
+                    .setShowCancelButton(true)
+                    .build()
+            )
+            .setEmailAddressIdentifierSupported(true)
+            .setAccountTypes(IdentityProviders.GOOGLE)
             .build()
-        val intent: PendingIntent =
-            Auth.CredentialsApi.getHintPickerIntent(mGoogleApiClient, hintRequest)
+
+        val intent: PendingIntent = Auth.CredentialsApi.getHintPickerIntent(mGoogleApiClient,hintRequest)
         try {
-            startIntentSenderForResult(intent.getIntentSender(), 1008, null, 0, 0, 0, null)
-        } catch (e: IntentSender.SendIntentException) {
-            Log.e("", "Could not start hint picker Intent", e)
+            startIntentSenderForResult(intent.intentSender, 1008, null, 0, 0, 0)
+        } catch (e: SendIntentException) {
+            Log.e("TAGabc123", "Could not start hint picker Intent", e)
         }
+//        val hintRequest: HintRequest = GoogleApiClient.Builder(this)
+//            .setPhoneNumberIdentifierSupported(true)
+//            .build()
+//        val intent: PendingIntent =
+//            Auth.CredentialsApi.getHintPickerIntent(mGoogleApiClient, hintRequest)
+//        try {
+//            startIntentSenderForResult(intent.getIntentSender(), 1008, null, 0, 0, 0, null)
+//        } catch (e: IntentSender.SendIntentException) {
+//            Log.e("", "Could not start hint picker Intent", e)
+//        }
     }
 
     private fun refSMS(userMob: String?) {
